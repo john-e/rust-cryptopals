@@ -1,5 +1,6 @@
 /**
 * Pass input like: challenge1-set1-hex-to-base64 <hex string>
+* e.g.: challenge1-set1-hex-to-base64 49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d
 **/
 use std::env;
 use std::process;
