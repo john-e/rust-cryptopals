@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+rustc src/*.rs --out-dir=target
