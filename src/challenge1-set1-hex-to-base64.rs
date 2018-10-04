@@ -3,17 +3,10 @@
 * e.g.: challenge1-set1-hex-to-base64 49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d
 **/
 use std::env;
-use std::process;
 use std::iter::FromIterator;
 
-fn _fail_exit(code: i32) {
-    process::exit(code);
-}
-
-macro_rules! fail_exit {
-    ($code:expr) => { _fail_exit($code) };
-    () => { _fail_exit(-1) };
-}
+#[macro_use]
+mod common;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
