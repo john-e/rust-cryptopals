@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
 rustc src/challenge*.rs --out-dir=target
+
+echo $(ls target | awk 'END { print NR, "files built" }' )
