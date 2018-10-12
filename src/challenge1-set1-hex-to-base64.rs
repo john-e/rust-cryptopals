@@ -7,6 +7,7 @@ use std::env;
 #[macro_use]
 mod common;
 mod hexer;
+mod base64;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -23,8 +24,9 @@ fn main() {
         fail_exit!();
     }
 
-
     let str: String = hexer::hex_to_string(input_string);
+
+    base64::test(str.clone());
 
     println!("{}", str);
 }
