@@ -26,7 +26,6 @@ fn main() {
 
     let str: String = hexer::hex_to_string(input_string);
 
-    base64::test(str.clone());
-
-    println!("{}", str);
+    println!("{}", base64::encode(str));
+    println!("{}", base64::encode("Engit PRabhat".to_string()));
 }

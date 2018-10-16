@@ -1,5 +1,5 @@
 
-pub fn test(mut s: String) {
+pub fn encode(mut s: String) -> String {
     let base64_elems: Vec<char> = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".chars().collect();
     let mut output: String = "".to_string();
     let mut padding: String = "".to_string();
@@ -18,10 +18,22 @@ pub fn test(mut s: String) {
             output += &"\r\n".to_string();
         }
 
-        let mut n = (chars[c] << 16) + (chars[c+1] << 8) + chars[c+2];
-        let mut m = [(n >> 18) & 63, (n >> 12) & 63, (n >> 6) & 63, n & 63];
-        println!("{:?}", m);
+        let mut n = chars[c] << 16;
+        if (c+1) < chars.len() {
+            n += chars[c+1] << 8;
+        }
+        if (c+2) < chars.len() {
+            n += chars[c+2] << 8;
+        }
+        let mut m = vec![(n >> 18) & 63, (n >> 12) & 63, (n >> 6) & 63, n & 63];
+        output += &format!(
+            "{}{}{}{}",
+           base64_elems[m[0] as usize],
+           base64_elems[m[1] as usize],
+           base64_elems[m[2] as usize],
+           base64_elems[m[3] as usize]
+        );
     }
-    println!("{}", output);
-//    println!("{:?} '{}' {}", elems,new_liner, padding);
+    output = output[0..(output.len() - pad_count)].to_string();
+    format!("{}{}", output, padding)
 }
